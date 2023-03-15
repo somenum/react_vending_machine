@@ -1,0 +1,24 @@
+@import '../../_helpers/variables';
+
+.button {
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.primary {
+  background-color: $brand-background;
+  color: $brand-dark;
+  padding: 10px 20px;
+  &:hover {
+    background-color: $brand-hover;
+  }
+}
+
+.transparent {
+  background: transparent;
+  max-height: 35px;
+}

@@ -1,7 +1,10 @@
-export type ButtonType = {
-  size: string;
+export type DataForm = {
+  email: string;
+  password: string;
 };
 
-export type ProductType = {
-  img: string;
+export type User = {
+  id: string | null;
+  token: string | null;
+  email: string | null;
 };
