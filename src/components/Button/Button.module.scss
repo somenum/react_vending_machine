@@ -1,0 +1,26 @@
+@import '../../_helpers/variables';
+
+.button {
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.primary {
+  border-radius: 5px;
+  border: 2.5px solid $brand-dark;
+  padding: 10px;
+  background-color: $brand-gold;
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.transparent {
+  background: transparent;
+  max-height: 35px;
+}
