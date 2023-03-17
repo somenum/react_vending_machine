@@ -33,23 +33,24 @@ const Form: FC<Props> = ({ title, handleClick }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit(submitForm)} className={styles.form}>
+    <form onSubmit={handleSubmit(submitForm)} className={styles["form"]}>
+      <h1 className={styles["form-title"]}>{title}</h1>
       <input
         type="email"
         placeholder="email"
         {...register("email")}
-        className={errors.email && styles.form__inputError}
+        className={errors.email && styles["form-inputError"]}
       />
-      <span className={styles.form__error}>{errors.email?.message}</span>
+      <span className={styles["form-error"]}>{errors.email?.message}</span>
       <input
         type="password"
         placeholder="password"
         {...register("password")}
-        className={errors.password && styles.form__inputError}
+        className={errors.password && styles["form-inputError"]}
       />
-      <span className={styles.form__error}>{errors.password?.message}</span>
-      <Button submit className={styles.form__button} buttonStyle="primary">
-        {title}
+      <span className={styles["form-error"]}>{errors.password?.message}</span>
+      <Button submit className={styles["form-button"]} buttonStyle="primary">
+        Submit
       </Button>
     </form>
   );

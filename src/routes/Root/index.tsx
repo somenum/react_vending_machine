@@ -6,7 +6,6 @@ const Root = () => {
   return (
     <div>
       <Header />
-      <h1>Vending machine app</h1>
       <Machine />
     </div>
   );

@@ -3,8 +3,19 @@ export type DataForm = {
   password: string;
 };
 
+export type Coin = {
+  value: number;
+  count: number;
+};
+
+export type Beverage = {
+  name: string;
+  price: number;
+  count: number;
+  img: string;
+};
+
 export type User = {
-  id: string | null;
-  token: string | null;
-  email: string | null;
+  email: string;
+  password: string;
 };

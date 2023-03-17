@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import "react-toastify/dist/ReactToastify.css";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { ToastContainer, Zoom } from "react-toastify";
@@ -33,7 +34,7 @@ root.render(
       transition={Zoom}
       autoClose={5000}
       position="top-center"
-      pauseOnHover={false}
+      pauseOnHover={true}
       hideProgressBar
     />
     <RouterProvider router={router} />

@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 const propTypes = {
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   onClick: PropTypes.func,
-  buttonStyle: PropTypes.string.isRequired,
+  buttonStyle: PropTypes.string,
   className: PropTypes.string,
   disabled: PropTypes.bool,
   submit: PropTypes.bool,
@@ -21,16 +21,18 @@ const Button: FC<Props> = ({
   disabled,
   submit,
 }) => {
-  const checkButtonStyle = (btnStyle: string) => {
-    return `${styles[btnStyle]}`;
+  const checkButtonStyle = (btnStyle: string | null | undefined) => {
+    if (btnStyle) {
+      return `${styles[btnStyle]}`;
+    }
   };
   return (
     <button
       type={submit ? "submit" : "button"}
       disabled={disabled ? disabled : false}
-      className={`${styles.button} ${checkButtonStyle(
+      className={`${className} ${styles["button"]} ${checkButtonStyle(
         buttonStyle
-      )} ${className}`}
+      )}`}
       onClick={onClick ? onClick : () => null}
     >
       {children}

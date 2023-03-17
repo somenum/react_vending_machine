@@ -1,40 +1,27 @@
 import React from "react";
-// import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 import { observer } from "mobx-react-lite";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { app } from "../../firebase";
-import store from "../../stores";
 import Form from "../../components/Form";
-import { DataForm } from "../../types";
 import Header from "../../components/Header";
-// import { setUser } from "../../app/slices/userSlice";
+import authStore from "../../stores/AuthStore/authStore";
+import styles from "./Login.module.scss";
+import { toast } from "react-toastify";
 
 const Login = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
-  const { userData } = store.userStore;
-
-  const handleLogin = ({ email, password }: DataForm) => {
-    const auth = getAuth(app);
-    signInWithEmailAndPassword(auth, email, password)
-      .then(({ user }) => {
-        // userData = {
-        //   email: user.email,
-        //   id: user.uid,
-        //   token: user.accessToken,
-        // };
-        console.log(user, userData);
-        // navigate("/");
-      })
-      // eslint-disable-next-line no-alert
-      .catch(() => toast.error("Invalid user"));
+  const handleSignIn = async (email: string, password: string) => {
+    await authStore.signIn({ email, password });
+    toast.success("You have signed in");
+    navigate("/");
   };
 
   return (
     <>
       <Header />
-      <Form title="Sign in" handleClick={handleLogin} />;
+      <div className={styles["login"]}>
+        <Form title="Sign in" handleClick={handleSignIn} />;
+      </div>
     </>
   );
 };

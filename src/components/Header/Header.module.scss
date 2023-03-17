@@ -1,0 +1,33 @@
+@import '../../_helpers/variables';
+
+.header {
+  margin-bottom: 30px;
+  padding: 10px 20px;
+  background-color: $primary-hover;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1;
+  position: sticky;
+  top: 0;
+
+  &-logo {
+    width: 50px;
+  }
+
+  &-navLink {
+    padding: 10px;
+    margin-left: 10px;
+    color: $brand-dark;
+    border-radius: 5px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: 2.5px solid $brand-dark;
+    background-color: $brand-gold;
+
+    &:hover  {
+      background-color: $primary-hover;
+    }
+  }
+}

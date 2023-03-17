@@ -2,19 +2,21 @@
 
 .button {
   border: none;
-  border-radius: 5px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .primary {
-  background-color: $brand-background;
-  color: $brand-dark;
-  padding: 10px 20px;
+  border-radius: 5px;
+  border: 2.5px solid $brand-dark;
+  padding: 10px;
+  background-color: $brand-gold;
   &:hover {
-    background-color: $brand-hover;
+    transform: scale(1.1);
   }
 }
 
