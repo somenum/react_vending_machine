@@ -24,3 +24,10 @@
   background: transparent;
   max-height: 35px;
 }
+
+
+@media (max-width:768px) {
+  .button {
+    font-size: 12px;
+  }
+}

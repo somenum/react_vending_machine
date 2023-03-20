@@ -1,4 +1,4 @@
-import { makeObservable, observable, action } from "mobx";
+import { makeAutoObservable, runInAction } from "mobx";
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -13,66 +13,50 @@ export class AuthStore {
   error: string | null = null;
 
   constructor() {
-    makeObservable(this, {
-      user: observable,
-      error: observable,
-      signUp: action,
-      signIn: action,
-      signOut: action,
-    });
+    makeAutoObservable(this);
   }
 
   async signUp(user: User) {
     const auth = getAuth(app);
-    try {
-      const authResult = await createUserWithEmailAndPassword(
-        auth,
-        user.email,
-        user.password
-      );
+    const authResult = await createUserWithEmailAndPassword(
+      auth,
+      user.email,
+      user.password
+    );
 
+    runInAction(() => {
       if (authResult.user) {
         this.user = user;
         this.error = "";
       }
-    } catch (error) {
-      if (error instanceof Error) {
-        this.error = error.message;
-      }
-    }
+    });
   }
 
   async signIn(user: User) {
     const auth = getAuth(app);
-    try {
-      const authResult = await signInWithEmailAndPassword(
-        auth,
-        user.email,
-        user.password
-      );
+    const authResult = await signInWithEmailAndPassword(
+      auth,
+      user.email,
+      user.password
+    );
 
+    runInAction(() => {
       if (authResult.user) {
         this.user = user;
         this.error = "";
       }
-    } catch (error) {
-      if (error instanceof Error) {
-        this.error = error.message;
-      }
-    }
+    });
   }
 
   async signOut() {
     const auth = getAuth(app);
-    try {
-      await signOut(auth);
+
+    await signOut(auth);
+
+    runInAction(() => {
       this.user = null;
       this.error = "";
-    } catch (error) {
-      if (error instanceof Error) {
-        this.error = error.message;
-      }
-    }
+    });
   }
 }
 

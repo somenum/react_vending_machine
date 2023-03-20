@@ -11,9 +11,15 @@ const Register = () => {
   const navigate = useNavigate();
 
   const handleSignUp = async (email: string, password: string) => {
-    await authStore.signUp({ email, password });
-    toast.success("You have signed up");
-    navigate("/");
+    try {
+      await authStore.signUp({ email, password });
+      toast.success("You have successfully signed up");
+      navigate("/");
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      }
+    }
   };
 
   return (

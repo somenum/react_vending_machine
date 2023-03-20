@@ -1,16 +1,26 @@
-import React, { FC } from "react";
+import React, { MouseEvent, FC, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Logo from "../../assets/logo.png";
 import styles from "./Header.module.scss";
+import authStore from "../../stores/AuthStore/authStore";
 import { toJS } from "mobx";
 import Button from "../Button";
-import authStore from "../../stores/AuthStore/authStore";
+import { toast } from "react-toastify";
+import { User } from "../../types";
 
 const Header: FC = () => {
-  const user = toJS(authStore.user);
-  const handleSignOut = async (event: React.FormEvent) => {
+  const [user, setUser] = useState<User | null>(toJS(authStore.user));
+  const handleSignOut = async (event: MouseEvent<HTMLElement>) => {
     event.preventDefault();
-    await authStore.signOut();
+    try {
+      await authStore.signOut();
+      toast.success("You have successfully signed out");
+      setUser(toJS(authStore.user));
+    } catch (error) {
+      if (error instanceof Error) {
+        toast.error(error.message);
+      }
+    }
   };
 
   return (
